@@ -1,5 +1,5 @@
+import { Component, OnInit } from '@angular/core';
 import { HTTP_PROVIDERS, Http } from '@angular/http';
-import { Component } from '@angular/core';
 import { MdToolbar } from '@angular2-material/toolbar';
 import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
 import { MdButton } from '@angular2-material/button';
@@ -7,6 +7,10 @@ import { MD_SIDENAV_DIRECTIVES } from '@angular2-material/sidenav';
 import { MD_LIST_DIRECTIVES } from '@angular2-material/list';
 import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
 import { MdInput } from '@angular2-material/input';
+
+import { Article } from './article';
+import { NewsService } from './news-browser.service';
+import './rxjs-operators';
 
 @Component({
   moduleId: module.id,
@@ -24,10 +28,11 @@ import { MdInput } from '@angular2-material/input';
   ],
   providers: [
     MdIconRegistry,
-    HTTP_PROVIDERS
+    HTTP_PROVIDERS,
+    NewsService
   ]
 })
-export class NewsBrowserAppComponent {
+export class NewsBrowserAppComponent implements OnInit {
   formShowing: boolean = false;
   views: Object[] = [
     {
@@ -41,16 +46,20 @@ export class NewsBrowserAppComponent {
       icon: "stars"
     }
   ];
-  articles: Object[] = [
-    {
-      title: "Puppies in the Park",
-      body: "On Tuesday there were corgis in Central Park.",
-      imageUrl: "http://deepanilassociates.com/wp-content/uploads/2013/01/Business-News-qlook.jpg"
-    },
-    {
-      title: "Kittens and Mittens",
-      body: "You want to see kittens with mittens? Well here's your chance!",
-      imageUrl: "http://deepanilassociates.com/wp-content/uploads/2013/01/Business-News-qlook.jpg"
-    }
-  ];
+  errorMessage: string;
+  articles: Article[];
+  mode = 'Observable';
+
+  constructor(private newsService: NewsService) { }
+
+  getNews() {
+    this.newsService.getNews()
+                    .subscribe(
+                      articles => this.articles = articles,
+                      error => this.errorMessage = <any>error);
+  }
+
+  ngOnInit() {
+    this.getNews();
+  }
 }
