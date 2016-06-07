@@ -12,10 +12,19 @@
   right: 3%;
   top: 34px;
   z-index: 1;
+  background-color: #E45F56;
 }
 
 md-sidenav-layout {
   background: rgba(0,0,0,0.03);
+}
+
+md-toolbar.md-primary {
+  background-color: #4AAAA5;
+}
+
+.md-accent[md-raised-button] {
+  background-color: #E45F56;
 }
 
 .form {
