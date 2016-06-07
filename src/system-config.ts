@@ -18,6 +18,7 @@ const materialPackages:string[] = [
   'sidenav',
   'list',
   'card',
+  'input'
 ];
 
 materialPackages.forEach((pkg) => {
