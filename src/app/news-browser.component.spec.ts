@@ -15,8 +15,8 @@ describe('App: NewsBrowser', () => {
     expect(app).toBeTruthy();
   }));
 
-  it('should have as title \'news-browser works!\'',
+  it('should have a sidenav view whose first name is \'My Account\'',
       inject([NewsBrowserAppComponent], (app: NewsBrowserAppComponent) => {
-    expect(app.title).toEqual('news-browser works!');
+    expect(app.views)[0].name.toEqual('My Account');
   }));
 });
