@@ -28,6 +28,7 @@ import { MdInput } from '@angular2-material/input';
   ]
 })
 export class NewsBrowserAppComponent {
+  formShowing: boolean = false;
   views: Object[] = [
     {
       name: "My Account",
