@@ -1,0 +1,52 @@
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.secondary {
+  color: rgba(0,0,0,0.54);
+}
+
+[md-fab] {
+  position: absolute;
+  right: 3%;
+  top: 34px;
+  z-index: 1;
+  background-color: #E45F56;
+}
+
+md-sidenav-layout {
+  background: rgba(0,0,0,0.03);
+}
+
+md-toolbar.md-primary {
+  background-color: #4AAAA5;
+}
+
+.md-accent[md-raised-button] {
+  background-color: #E45F56;
+}
+
+.form {
+  display: flex;
+}
+
+.form md-card {
+  flex-grow: 1;
+}
+
+md-input {
+  margin: 8px 0;
+  width: 100%;
+}
+
+md-card {
+  width: 380px;
+  box-sizing: border-box;
+  margin: 16px;
+}
+
+.card-container {
+  display: flex;
+  flex-flow: row wrap;
+}
