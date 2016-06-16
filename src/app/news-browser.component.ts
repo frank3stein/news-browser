@@ -48,18 +48,25 @@ export class NewsBrowserAppComponent implements OnInit {
   ];
   errorMessage: string;
   articles: Article[];
+  searchQuery: string;
   mode = 'Observable';
 
   constructor(private newsService: NewsService) { }
 
-  getNews() {
-    this.newsService.getNews()
+  getNews(query) {
+    this.newsService.getNews(query)
                     .subscribe(
                       articles => this.articles = articles,
                       error => this.errorMessage = <any>error);
   }
 
+  onSubmit(query) {
+    this.getNews(query);
+    this.formShowing = !this.formShowing;
+  }
+
   ngOnInit() {
-    this.getNews();
+    // TODO: initialize news with top news article
+    this.getNews('yosemite');
   }
 }
