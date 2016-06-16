@@ -8,10 +8,12 @@ import { Observable }     from 'rxjs/Observable';
 export class NewsService {
   constructor (private http: Http) { }
 
-  private alchemyAPI = 'https://gateway-a.watsonplatform.net/calls/data/GetNews?apikey=b3b388b1b36883fcd5c206682256a6689ec89688&outputMode=json&start=now-7d&end=now&maxResults=10&q.enriched.url.title=yosemite&return=enriched.url.title,enriched.url.text,enriched.url.image,enriched.url.url';
+  private alchemyAPIChunk1 = 'https://gateway-a.watsonplatform.net/calls/data/GetNews?apikey=b3b388b1b36883fcd5c206682256a6689ec89688&outputMode=json&start=now-7d&end=now&maxResults=10&q.enriched.url.title=';
+  private alchemyAPIChunk2 = '&return=enriched.url.title,enriched.url.text,enriched.url.image,enriched.url.url';
 
-  getNews(): Observable<Article[]> {
-    return this.http.get(this.alchemyAPI)
+  getNews(query): Observable<Article[]> {
+    let searchQuery = this.alchemyAPIChunk1 + query + this.alchemyAPIChunk2;
+    return this.http.get(searchQuery)
                     .map(this.extractData)
                     .catch(this.handleError);
   }
